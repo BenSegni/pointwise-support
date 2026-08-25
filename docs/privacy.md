@@ -150,7 +150,7 @@ Depending on location, users may have rights to request:
 
 Users can disconnect GitHub from within Pointwise and can revoke or uninstall Pointwise through GitHub settings.
 
-To make a privacy or deletion request, contact the Pointwise project owner through the repository below. Do not include passwords, access tokens, private source code or other sensitive information in a public GitHub issue. A private contact route can be arranged after the initial request.
+To make a privacy or deletion request, contact Pointwise using the details below. Do not include passwords, access tokens, private source code or other sensitive information in a public GitHub issue.
 
 ## 11. Children's privacy
 
@@ -162,10 +162,12 @@ This policy may be updated when Pointwise's features, providers or legal obligat
 
 ## 13. Contact
 
-For privacy questions, deletion requests or security concerns, contact the Pointwise project owner:
+For privacy questions, deletion requests or security concerns, contact Pointwise using the appropriate channel:
 
-- Support repository: https://github.com/BenSegni/pointwise-support
-- Support requests: https://github.com/BenSegni/pointwise-support/issues/new
-- GitHub profile: https://github.com/BenSegni
+- Support email: support@pointwise-estimates.tech
+- Security email: security@pointwise-estimates.tech
+- Support repository: https://github.com/ark-whale-applications/pointwise-support
+- Support requests: https://github.com/ark-whale-applications/pointwise-support/issues/new
+- Pointwise organisation: https://github.com/ark-whale-applications
 
-Please avoid posting personal information or confidential repository data in a public issue.
+Please avoid posting personal information, security-sensitive information or confidential repository data in a public issue. Use the relevant email address for private requests.
