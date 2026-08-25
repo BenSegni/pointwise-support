@@ -6,7 +6,7 @@ permalink: /privacy/
 
 # Pointwise Privacy Policy
 
-**Effective date: 24 August 2026**
+**Effective date: 25 August 2026**
 
 Pointwise is a collaborative estimation application that connects to GitHub repositories, allows repository contributors to estimate GitHub issues and uses GitHub Copilot to produce an advisory task assessment.
 
@@ -17,6 +17,9 @@ This policy explains what information Pointwise processes, why it is used, how l
 Depending on how Pointwise is used, it may process:
 
 - GitHub account information, including a username and avatar URL;
+- stable GitHub numeric account identifiers used to recognise a returning account or installation;
+- GitHub App installation identifiers and installation status information;
+- GitHub Marketplace subscription information, including plan, billing-cycle, trial and subscription-status metadata supplied by GitHub;
 - GitHub repository identifiers, repository names and default branches;
 - GitHub issue numbers, titles, descriptions and labels;
 - repository paths and relevant repository content used to assess an issue;
@@ -35,6 +38,7 @@ Pointwise does not intentionally collect payment-card information, advertising p
 Information is received:
 
 - from GitHub after a user authorises Pointwise;
+- from GitHub App installation and Marketplace events;
 - from repositories selected through the Pointwise GitHub App installation;
 - from users participating in an estimation session;
 - from GitHub Copilot when it returns an assessment; and
@@ -47,12 +51,14 @@ Pointwise only requests access to repositories made available through the releva
 Pointwise processes information to:
 
 - authenticate users and verify their GitHub connection;
+- associate a returning GitHub account or GitHub App installation with the correct Pointwise workspace;
 - identify repositories, issues and contributors available to a workspace;
 - create and synchronise collaborative estimation sessions;
 - record and display participant estimates;
 - provide relevant issue and repository context to GitHub Copilot;
 - validate, display and download advisory task assessments;
 - enforce repository and plan limits;
+- process GitHub Marketplace subscription state and installation lifecycle events;
 - measure repository interest in a future Pointwise Pro plan;
 - prevent misuse and protect the service; and
 - investigate errors and maintain reliability.
@@ -89,24 +95,47 @@ Shared-session information is stored temporarily in Upstash Redis. Sessions, est
 
 The encrypted GitHub OAuth token is stored in the user's browser cookie rather than in Pointwise's persistent application database. The cookie expires after no more than 30 days or is cleared when the user disconnects GitHub.
 
-### Workspace records
+### Workspace and entitlement records
 
-Workspace identifiers, connected repository identifiers and names, plan information and Pro-interest events may be stored in Supabase Postgres. These records are retained while needed to provide the service, enforce plan limits, understand product demand or meet legal and security obligations.
+Supabase Postgres stores durable records needed to identify a workspace and enforce product entitlements. These may include:
 
-Users may request deletion of eligible persistent Pointwise records. Disconnecting GitHub alone does not automatically delete workspace-entitlement or Pro-interest records.
+- a generated Pointwise workspace UUID;
+- a GitHub numeric user ID for a personal workspace;
+- a GitHub App installation ID;
+- the workspace plan and repository limit;
+- selected repository numeric IDs and repository names; and
+- creation and update timestamps.
+
+The GitHub numeric user ID is a stable identifier supplied by GitHub. Pointwise does not need to store the user's GitHub username in the workspace record to recognise the account. These identifiers are pseudonymous identifiers rather than anonymous data, because they can be associated with a GitHub account through GitHub.
+
+### GitHub App and Marketplace records
+
+Pointwise may retain installation and Marketplace event records needed to operate and administer the service. These may include GitHub installation IDs, GitHub numeric account IDs, account type, installation status, subscription plan and status, billing-cycle metadata, trial dates, event actions and event timestamps.
+
+Pointwise does not receive or store payment-card details from GitHub Marketplace.
+
+### Pro-interest and product-operation records
+
+Pointwise may store workspace IDs, repository IDs, product milestone state and timestamps used to understand Pro demand, track installation milestones and operate related automation.
 
 ### Operational logs
 
-Vercel and other infrastructure providers may retain limited request and error logs under their configured retention periods. Pointwise avoids intentionally logging GitHub access tokens, complete issue content, repository source content or complete Copilot assessments.
+Vercel and other infrastructure providers may retain limited request and error logs under their configured retention periods. Where Pointwise derives identifiers specifically for logging, rate limiting or security correlation, it may hash or otherwise pseudonymise them. This does not mean that all durable GitHub identifiers in the application database are hashed.
+
+Pointwise avoids intentionally logging GitHub access tokens, complete issue content, repository source content or complete Copilot assessments.
+
+Persistent records are retained while needed to provide the service, enforce plan limits, process installation or subscription state, understand product demand or meet legal and security obligations.
+
+Users may request deletion of eligible persistent Pointwise records. Disconnecting GitHub alone does not automatically delete workspace-entitlement, installation, Marketplace or Pro-interest records where they are still required for the purposes above.
 
 ## 7. Service providers
 
 Pointwise relies on the following providers:
 
-- **GitHub:** authentication, repository data, issue data, contributor data and GitHub Copilot;
+- **GitHub:** authentication, GitHub App installation data, Marketplace subscription data, repository data, issue data, contributor data and GitHub Copilot;
 - **Vercel:** application hosting, serverless execution and operational logging;
 - **Upstash:** temporary Redis storage and shared-session synchronisation; and
-- **Supabase:** persistent workspace, repository-entitlement and Pro-interest records.
+- **Supabase:** persistent workspace, repository-entitlement, installation, Marketplace, milestone and Pro-interest records.
 
 These providers may process information in countries outside the user's country. Their own contractual safeguards and privacy terms apply to their processing.
 
@@ -129,6 +158,7 @@ Pointwise uses measures intended to protect information, including:
 - `HttpOnly`, `Secure` and `SameSite` cookie controls in production;
 - OAuth state validation;
 - hashed session-leader tokens;
+- hashed or pseudonymised identifiers for selected logging and rate-limiting use cases;
 - server-side authorisation and repository-entitlement checks;
 - time-limited shared-session storage;
 - validation of API inputs and Copilot responses; and
