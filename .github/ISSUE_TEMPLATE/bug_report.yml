@@ -1,0 +1,118 @@
+name: Bug report
+description: Report a reproducible problem with Pointwise
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a problem with Pointwise.
+
+        Do not include access tokens, passwords, private source code, confidential repository content, session links, or personal information.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Describe the problem clearly and include any error message shown by Pointwise.
+      placeholder: Tell us what went wrong.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Provide the exact sequence needed to reproduce the problem.
+      placeholder: |
+        1. Connect to GitHub
+        2. Open or join an estimation session
+        3. Select ...
+        4. Click ...
+        5. Observe ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+      description: What did you expect Pointwise to do?
+      placeholder: Describe the expected result.
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behaviour
+      description: What did Pointwise do instead?
+      placeholder: Describe the result you actually saw.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: How often does this happen?
+      options:
+        - Every time
+        - Often
+        - Sometimes
+        - Once
+        - Not sure
+    validations:
+      required: true
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and version
+      description: For example, Chrome 151 or Safari 20.
+      placeholder: Chrome 151
+    validations:
+      required: true
+
+  - type: input
+    id: device
+    attributes:
+      label: Device and operating system
+      description: For example, Windows 11 desktop or Android 16 phone.
+      placeholder: Windows 11 desktop
+    validations:
+      required: true
+
+  - type: dropdown
+    id: role
+    attributes:
+      label: Session role
+      description: Which role were you using when the problem occurred?
+      options:
+        - Session leader
+        - Participant
+        - Not sure
+    validations:
+      required: true
+
+  - type: input
+    id: public_issue
+    attributes:
+      label: Related public GitHub issue
+      description: Optional. Link the public issue being estimated if it is safe to share.
+      placeholder: https://github.com/owner/repository/issues/123
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Screenshots or additional context
+      description: Add screenshots or other useful context after removing private or sensitive information.
+      placeholder: Drag screenshots here or add any other relevant details.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Safety checks
+      options:
+        - label: I have searched the existing support issues for the same problem.
+          required: true
+        - label: I have removed tokens, passwords, private source code, confidential repository content, session links, and personal information.
+          required: true
