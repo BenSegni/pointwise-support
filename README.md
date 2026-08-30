@@ -16,6 +16,6 @@ Before posting, remove access tokens, passwords, private source code, personal i
 
 ## Documentation
 
-- [Privacy policy](https://bensegni.github.io/pointwise-support/privacy/)
+- [Privacy policy](docs/privacy.md)
 - [Support guidance](SUPPORT.md)
 - [Security policy](SECURITY.md)
